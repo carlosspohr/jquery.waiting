@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>jQuery.waiting</title>
+		<link rel="stylesheet" href="jquery.waiting.css" type="text/css" media="all" />
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="jquery.waiting.js"></script>
+	</head>
+<body>
+	<div class="jquery-waiting-base-container">Champz.</div>
+	
+	<div id="visualization" style="width: 300px; height: 300px; left: 30px; top: 30px; float: left;"></div>
+	<div id="visualization2" style="width: 300px; height: 300px; float: right;"></div>
+	
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+	<script type="text/javascript">
+		google.load('visualization', '1', {packages: ['geomap', 'corechart']});
+		
+		$(document).ready(function(){
+			$(".jquery-waiting-base-container").waiting();
+			console.log("aqui...");
+			
+		    google.setOnLoadCallback(function(){
+		    	var data = google.visualization.arrayToDataTable([
+	  		        ['Country', 'Popularity'],
+	  		        ['Germany', 200],
+	  		        ['United States', 300],
+	  		        ['Brazil', 400],
+	  		        ['Canada', 500],
+	  		        ['France', 600],
+	  		        ['RU', 700]
+	  		      ]);
+	  		    
+	  		      var geomap = new google.visualization.GeoMap(document.getElementById('visualization'));
+	  		      geomap.draw(data, null);
+	  		      
+	  		    var data2 = google.visualization.arrayToDataTable([
+	  		                                                    ['Task', 'Hours per Day'],
+	  		                                                    ['Work', 11],
+	  		                                                    ['Eat', 2],
+	  		                                                    ['Commute', 2],
+	  		                                                    ['Watch TV', 2],
+	  		                                                    ['Sleep', 7]
+	  		                                                  ]);
+
+	  		                                                  // Create and draw the visualization.
+				new google.visualization.PieChart(document.getElementById('visualization2')).draw(data2, {title:"So, how was your day?"});
+		    });
+		    console.log("aqui 2...");
+		});
+	    
+	</script>
+</body>
+</html>
